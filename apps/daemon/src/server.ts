@@ -1534,6 +1534,10 @@ export function createAgentRuntimeEnv(
     OD_DAEMON_URL: daemonUrl,
     OD_NODE_BIN: nodeBin,
   };
+  const sidecarIpcPath = baseEnv[SIDECAR_ENV.IPC_PATH];
+  if (typeof sidecarIpcPath === 'string' && sidecarIpcPath.length > 0) {
+    env[SIDECAR_ENV.IPC_PATH] = sidecarIpcPath;
+  }
 
   // Ensure the node binary directory is on PATH so agent sub-processes —
   // in particular npm .cmd shims on Windows that run `"node" script.js` —
